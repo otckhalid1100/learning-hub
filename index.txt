@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Study Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #000;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #333;
+    }
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+    }
+    nav a:hover {
+      background: #575757;
+    }
+    .container {
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      margin: 10px 0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #333;
+      color: white;
+      margin-top: 20px;
+    }
+    .dark-mode {
+      background: #121212;
+      color: #eee;
+    }
+    .dark-mode .card {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+    .toggle-btn {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+    }
+    .quiz-option {
+      display: block;
+      margin: 8px 0;
+    }
+    .quiz-result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Study Website</h1>
+    <p>Learn Physics • Chemistry • Maths</p>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#physics">Physics</a>
+    <a href="#chemistry">Chemistry</a>
+    <a href="#maths">Maths</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container" id="home">
+    <div class="card">
+      <h2>About This Website</h2>
+      <p>यह वेबसाइट पढ़ाई के लिए बनाई गई है। यहाँ पर Physics, Chemistry और Maths के notes और questions मिलेंगे।</p>
+    </div>
+  </div>
+
+  <div class="container" id="physics">
+    <div class="card">
+      <h2>Physics</h2>
+      <p>यहाँ पर तुम्हें Motion, Laws of Motion, Work-Energy, Gravitation आदि topics मिलेंगे।</p>
+      <a href="physics_notes.pdf" download>📥 Download Physics Notes</a>
+    </div>
+  </div>
+
+  <div class="container" id="chemistry">
+    <div class="card">
+      <h2>Chemistry</h2>
+      <p>यहाँ पर तुम्हें Mole Concept, Atomic Structure, Chemical Bonding आदि topics मिलेंगे।</p>
+      <a href="chemistry_notes.pdf" download>📥 Download Chemistry Notes</a>
+    </div>
+  </div>
+
+  <div class="container" id="maths">
+    <div class="card">
+      <h2>Maths</h2>
+      <p>यहाँ पर तुम्हें Algebra, Trigonometry, Calculus और Coordinate Geometry जैसे topics मिलेंगे।</p>
+      <a href="maths_notes.pdf" download>📥 Download Maths Notes</a>
+    </div>
+  </div>
+
+  <div class="container" id="quiz">
+    <div class="card">
+      <h2>Quick Quiz</h2>
+      <p>Physics Example Question:</p>
+      <p>यदि कोई वस्तु 2 सेकंड में 10 m/s की गति प्राप्त करती है, तो उसका त्वरण कितना होगा?</p>
+      <label class="quiz-option"><input type="radio" name="q1" value="a"> 2 m/s²</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="b"> 5 m/s²</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="c"> 10 m/s²</label>
+      <button onclick="checkQuiz()">Submit</button>
+      <div class="quiz-result" id="result"></div>
+    </div>
+  </div>
+
+  <div class="container" id="contact">
+    <div class="card">
+      <h2>Contact</h2>
+      <p>अगर तुम्हें कोई doubt है तो नीचे अपना message लिखो:</p>
+      <form>
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+        <label>Message:</label><br>
+        <textarea name="message" rows="4" required></textarea><br><br>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 My Study Website | Made for Learning</p>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+    function checkQuiz() {
+      let answer = document.querySelector('input[name="q1"]:checked');
+      let result = document.getElementById("result");
+      if (!answer) {
+        result.textContent = "कृपया एक उत्तर चुनें।";
+        return;
+      }
+      if (answer.value === "b") {
+        result.textContent = "सही उत्तर ✅ त्वरण = 5 m/s²";
+        result.style.color = "green";
+      } else {
+        result.textContent = "गलत उत्तर ❌ सही उत्तर है 5 m/s²";
+        result.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Study Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #000;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #333;
+    }
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+    }
+    nav a:hover {
+      background: #575757;
+    }
+    .container {
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      margin: 10px 0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #333;
+      color: white;
+      margin-top: 20px;
+    }
+    .dark-mode {
+      background: #121212;
+      color: #eee;
+    }
+    .dark-mode .card {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+    .toggle-btn {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+    }
+    .quiz-option {
+      display: block;
+      margin: 8px 0;
+    }
+    .quiz-result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Study Website</h1>
+    <p>Learn Physics • Chemistry • Maths</p>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#physics">Physics</a>
+    <a href="#chemistry">Chemistry</a>
+    <a href="#maths">Maths</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container" id="home">
+    <div class="card">
+      <h2>About This Website</h2>
+      <p>यह वेबसाइट पढ़ाई के लिए बनाई गई है। यहाँ पर Physics, Chemistry और Maths के notes और questions मिलेंगे।</p>
+    </div>
+  </div>
+
+  <div class="container" id="physics">
+    <div class="card">
+      <h2>Physics</h2>
+      <p>यहाँ पर तुम्हें Motion, Laws of Motion, Work-Energy, Gravitation आदि topics मिलेंगे।</p>
+      <a href="physics_notes.pdf" download>📥 Download Physics Notes</a>
+    </div>
+  </div>
+
+  <div class="container" id="chemistry">
+    <div class="card">
+      <h2>Chemistry</h2>
+      <p>यहाँ पर तुम्हें Mole Concept, Atomic Structure, Chemical Bonding आदि topics मिलेंगे।</p>
+      <a href="chemistry_notes.pdf" download>📥 Download Chemistry Notes</a>
+    </div>
+  </div>
+
+  <div class="container" id="maths">
+    <div class="card">
+      <h2>Maths</h2>
+      <p>यहाँ पर तुम्हें Algebra, Trigonometry, Calculus और Coordinate Geometry जैसे topics मिलेंगे।</p>
+      <a href="maths_notes.pdf" download>📥 Download Maths Notes</a>
+    </div>
+  </div>
+
+  <div class="container" id="quiz">
+    <div class="card">
+      <h2>Quick Quiz</h2>
+      <p>Physics Example Question:</p>
+      <p>यदि कोई वस्तु 2 सेकंड में 10 m/s की गति प्राप्त करती है, तो उसका त्वरण कितना होगा?</p>
+      <label class="quiz-option"><input type="radio" name="q1" value="a"> 2 m/s²</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="b"> 5 m/s²</label>
+      <label class="quiz-option"><input type="radio" name="q1" value="c"> 10 m/s²</label>
+      <button onclick="checkQuiz()">Submit</button>
+      <div class="quiz-result" id="result"></div>
+    </div>
+  </div>
+
+  <div class="container" id="contact">
+    <div class="card">
+      <h2>Contact</h2>
+      <p>अगर तुम्हें कोई doubt है तो नीचे अपना message लिखो:</p>
+      <form>
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+        <label>Message:</label><br>
+        <textarea name="message" rows="4" required></textarea><br><br>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 My Study Website | Made for Learning</p>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+    function checkQuiz() {
+      let answer = document.querySelector('input[name="q1"]:checked');
+      let result = document.getElementById("result");
+      if (!answer) {
+        result.textContent = "कृपया एक उत्तर चुनें।";
+        return;
+      }
+      if (answer.value === "b") {
+        result.textContent = "सही उत्तर ✅ त्वरण = 5 m/s²";
+        result.style.color = "green";
+      } else {
+        result.textContent = "गलत उत्तर ❌ सही उत्तर है 5 m/s²";
+        result.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
